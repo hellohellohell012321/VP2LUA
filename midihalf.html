@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI Half-Time Converter</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #222;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 15px auto;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #downloadLink {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #downloadLink:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button onclick="location.href='./index.html'">← Return to VP2LUA</button>
+
+        <h2>MIDI Half-Time Converter</h2>
+
+        <input type="file" id="midiInput" accept=".mid">
+        <button onclick="convertMidi()">Convert to Half-Time</button>
+
+        <a id="downloadLink"></a>
+    </div>
+
+    <script>
+        async function convertMidi() {
+            const fileInput = document.getElementById('midiInput').files[0];
+        
