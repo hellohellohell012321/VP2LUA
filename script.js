@@ -10,7 +10,8 @@ function convertToLua() {
     const bpm = document.getElementById("bpmInput").value || 120; // Get BPM value
     if (!input) return; // Prevent errors on empty input
 
-    let luaScript = `bpm = ${bpm}\n\n`;  // Add the BPM line to the output
+    let luaScript = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/hellohellohell012321/TALENTLESS/main/loader_main.lua"))()\n\n';
+    luaScript += `bpm = ${bpm}\n\n`;  // Add the BPM line to the output
     let section = 1;
     const lines = input.split("\n");
 
@@ -58,7 +59,6 @@ function convertToLua() {
             luaScript += `rest(${restDuration}, ${bpm})\n`;
         }
     });
-
     document.getElementById("output").innerText = luaScript;
 }
 
