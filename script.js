@@ -41,24 +41,30 @@ function convertToLua() {
                 i++;
             }
 
-            // Determine the rest duration based on next character
-            let restDuration = 1;
-            if (i < line.length) {
-                if (line[i] === "-") {
-                    restDuration = 1;
-                    i++;
-                } else if (line[i] === " ") {
-                    restDuration = 0.5;
-                    i++;
-                } else {
-                    restDuration = 0.25;
-                }
+            // Determine rest duration and count dashes
+            let dashCount = 0;
+            while (i < line.length && line[i] === "-") {
+                dashCount++;
+                i++;
             }
 
-            luaScript += `keypress("${note}", ${restDuration}, ${bpm})\n`;
-            luaScript += `rest(${restDuration}, ${bpm})\n`;
+            luaScript += `keypress("${note}", 1, ${bpm})\n`;
+            
+            // Call rest() for the number of dashes found
+            for (let j = 0; j < dashCount; j++) {
+                luaScript += `rest(1, ${bpm})\n`;
+            }
+
+            // Handle spaces as a shorter rest
+            if (i < line.length && line[i] === " ") {
+                luaScript += `rest(0.5, ${bpm})\n`;
+                i++;
+            } else if (dashCount === 0) {
+                luaScript += `rest(0.25, ${bpm})\n`;
+            }
         }
     });
+
     document.getElementById("output").innerText = luaScript;
 }
 
