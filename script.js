@@ -48,7 +48,7 @@ function convertToLua() {
                 i++;
             }
 
-            luaScript += `keypress("${note}", 0.25, ${bpm})\n`;
+            luaScript += `keypress("${note}", 0.25, bpm)\n`;
             
             // Call rest() for the number of dashes found
             for (let j = 0; j < dashCount; j++) {
