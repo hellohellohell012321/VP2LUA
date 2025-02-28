@@ -57,10 +57,10 @@ function convertToLua() {
 
             // Handle spaces as a shorter rest
             if (i < line.length && line[i] === " ") {
-                luaScript += `rest(0.5, ${bpm})\n`;
+                luaScript += `rest(0.5, bpm)\n`;
                 i++;
             } else if (dashCount === 0) {
-                luaScript += `rest(0.25, ${bpm})\n`;
+                luaScript += `rest(0.25, bpm)\n`;
             }
         }
     });
