@@ -52,7 +52,7 @@ function convertToLua() {
             
             // Call rest() for the number of dashes found
             for (let j = 0; j < dashCount; j++) {
-                luaScript += `rest(1, ${bpm})\n`;
+                luaScript += `rest(1, bpm)\n`;
             }
 
             // Handle spaces as a shorter rest
