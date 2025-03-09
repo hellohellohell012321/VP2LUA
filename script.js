@@ -24,7 +24,6 @@ function convertToLua() {
 
         let i = 0;
         while (i < line.length) {
-            let keypressDuration = 1; // Default duration
             let note = "";
 
             if (line[i] === "[") {
@@ -59,9 +58,18 @@ function convertToLua() {
             if (i < line.length && line[i] === " ") {
                 luaScript += `rest(0.5, bpm)\n`;
                 i++;
+            } else if (i < line.length && line[i] === ".") { 
+                luaScript += `rest(0.75, bpm)\n`;
+                i++; // Move past the period
+            } else if (i < line.length && line[i] === ",") { 
+                luaScript += `rest(0.333, bpm)\n`;
+                i++; // Move past the comma
+            } else if (i < line.length && line[i] === ";") { 
+                luaScript += `rest(0.125, bpm)\n`;
+                i++; // Move past the comma
             } else if (dashCount === 0) {
                 luaScript += `rest(0.25, bpm)\n`;
-            }
+            }                 
         }
     });
 
